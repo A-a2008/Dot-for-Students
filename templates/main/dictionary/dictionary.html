@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Dictionary</h1>
+<p>Search for definitions</p>
+{% if word %}
+<audio controls autoplay hidden>
+  <source src="{{ audio_url }}" />
+</audio>
+<p>
+    Search: <b>{{ word }}</b><br />
+    Phonetics: <b>{{ phonetics }}</b><br />
+    Part of Speech: <b>{{ parts_of_speech }}</b><br />
+    Definition: <b>{{ definition }}</b><br />
+    Example: <b>{{ example }}</b>
+</p>
+{% else %}
+<p>
+    {{ error }}
+</p>
+{% endif %}
+<form action="/dictionary/" method="post">
+    {% csrf_token %}
+    Search: <input type="text" name="word" placeholder="Search" required ><br />
+    <input type="submit" class="button primary small" value="Search">
+    <input type="reset" class="button small" value="Reset">
+</form>
+{% endblock %}

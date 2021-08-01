@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html>
+	<head>
+		<title>Dot for Student's</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}" />
+<!--        <link rel="icon" href="{% static 'images/sls_logo.png' %}" />-->
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+                            
+							<!-- Header -->
+                            <header id="header">
+                                <a href="/" class="logo"><strong>Dot</strong> for Students</a>
+                            </header>
+
+                            <!-- Content -->
+								<section>
+                                        {% block content %}
+
+                                        {% endblock %}
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<header class="major">
+								<h2><a href="/">Homepage</a></h2>
+							</header>
+
+                            <nav id="menu">
+								<header class="major">
+									<h2>User</h2>
+								</header>
+								<ul>
+									{% if not user.is_authenticated %}
+									<li>
+										<span class="opener">User</span>
+										<ul>
+											<li><a href="{% url 'register' %}">Register</a></li>
+											<li><a href="{% url 'login' %}">Login</a></li>
+											<li><a href="{% url 'verify_email' %}">Forgot Password</a></li>
+										</ul>
+									</li>
+									{% else %}
+									<li>
+										<span class="opener">Hi, {{ user.first_name }}</span>
+										<ul>
+											<li><a href="{% url 'logout' %}">Logout</a></li>
+											<li><a href="{% url 'verify_email' %}">Change Password</a></li>
+											{% if user.is_superuser %}
+											<li><a href="/admin" target="_blank">Admin Panel</a></li>
+											{% endif %}
+										</ul>
+									</li>
+									{% endif %}
+								</ul>
+								<br /><br />
+								<header class="major">
+									<h2>Sections</h2>
+								</header>
+								<ul>
+									<li><a href="{% url 'todo-list' %}">To-Do List</a></li>
+									<li><a href="{% url 'notebook' %}">Notebook</a></li>
+									<li><a href="{% url 'wikipedia' %}">Wikipedia</a></li>
+									<li><a href="{% url 'dictionary' %}">Dictionary</a></li>
+									<li><a href="{% url 'youtube' %}">Youtube</a></li>
+									<li><a href="{% url 'translate' %}">Translate</a></li>
+								</ul>
+							</nav>
+
+							<!-- Get in touch -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p>Mail me if you want something more.</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="mailto:aryan.rajalbandi@gmail.com">aryan.rajalbandi@gmail.com</a></li>
+									</ul>
+								</section>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Translate</h1>
+<p>Translate from one language to another easily</p>
+<form action="/translate/" method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-6 col-12-small">
+            <label for="languages_from">
+                <h3>From</h3>
+            </label>
+            <select name="language_from" id="languages_from">
+                {% for key, value in languages.items %}
+                <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+            </select><br />
+            {% if not text_to_translate %}
+            <textarea name="text_to_translate" rows="5" placeholder="Type the text to translate" required></textarea>
+            {% else %}
+            <textarea name="text_to_translate" rows="5" required>{{ text_to_translate }}</textarea>
+            {% endif %}
+        </div>
+        <div class="col-6 col-12-small">
+            <label for="languages_to">
+                <h3>To</h3>
+            </label>
+            <select name="language_to" id="languages_to">
+                {% for key, value in languages.items %}
+                <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+            </select><br />
+            {% if not translated_text %}
+            <p><b>Please press translate with the text to translate</b></p>
+            {% else %}
+            <p>
+                Translation: <b>{{ translated_text }}</b><br />
+                Pronunciation: <b>{{ pronunciation }}</b>
+            </p>
+            {% endif %}
+        </div>
+    </div><br />
+    <center>
+        <input type="submit" class="button primary" value="Translate">
+        <input type="reset" class="button" value="Reset">
+    </center>
+</form>
+{% endblock %}

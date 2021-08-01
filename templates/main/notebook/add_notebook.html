@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>To-do List</h1>
+<p>Add your daily to-do's and don't worry deleting them everyday</p>
+<form action="/notebook/edit/{{ notebook.id }}/" method="post">
+    {% csrf_token %}
+    Notebook Name: <input type="text" name="notebook_name" value="{{ notebook.notebook_name }}" required /><br />
+    Notebook Content: <textarea name="notebook_content" rows="2" required >{{ notebook.notebook_content }}</textarea><br />
+    <input type="submit" class="button primary" value="Add">
+    <input type="reset" class="button" value="Reset">
+</form>
+{% endblock %}

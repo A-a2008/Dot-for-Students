@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Wikipedia</h1>
+<p>Search and get shorthand definitions</p>
+
+{% if search_list %}
+<h3>Result:</h3>
+<p>
+    <ul>
+    Your result matched with some other results. Please pick the most appropriate result from the following:
+    {% for search in search_list %}
+    <li>{{ search }}</li>
+    {% endfor %}
+    </ul>
+</p>
+<p>Did not get what you want? Try and search something else or rephrase your search</p>
+{% endif %}
+
+<form action="/wikipedia/" method="post">
+    {% csrf_token %}
+    Search name: <input type="text" name="search" placeholder="Search" required ><br />
+    <input type="submit" class="button primary small" value="Search">
+</form>
+{% endblock %}

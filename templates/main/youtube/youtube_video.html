@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1><br />
+<iframe height="588" width="1050" src="{{ url }}"></iframe><br />
+<p>
+    {{ description }}
+</p>
+<a href="javascript:history.back()" class="button small">Back</a>
+{% endblock %}

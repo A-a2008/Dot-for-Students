@@ -1,0 +1,36 @@
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 1 5px grey; 
+  border-radius: 10px;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #FF8484; 
+  border-radius: 9px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #D75656; 
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #FF8484;
+}
+
+::selection {
+  color: white;
+  background: #FF8484;
+}
+
+.each-story {
+  text-decoration: none;
+}
+

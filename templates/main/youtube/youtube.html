@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if not all %}
+<h3>Youtube</h3>
+<p>Search for YouTube videos and not get disturbed with others</p>
+<form action="/youtube/" method="post">
+    {% csrf_token %}
+    Search: <input type="text" name="youtube_query" placeholder="Search" required ><br />
+    <input type="submit" class="button primary small" value="Search">
+    <input type="reset" class="button small" value="Reset">
+</form>
+{% else %}
+<form action="/youtube/" method="post">
+    {% csrf_token %}
+    Search: <input type="text" name="youtube_query" placeholder="Search" required ><br />
+    <input type="submit" class="button primary small" value="Search">
+    <input type="reset" class="button small" value="Reset">
+</form>
+<h2>Videos related to "{{ query }}":</h2>
+{% for id, title, description, img_url in all %}
+<a href="/youtube/video/{{ id }}/"><img src="{{ img_url }}" alt="{{ title }}"></a><br />
+<a href="/youtube/video/{{ id }}/">{{ title }}</a>
+<p>{{ description }}</p>
+{% endfor %}
+{% endif %}
+{% endblock %}

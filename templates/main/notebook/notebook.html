@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Notebook</h1>
+<p>Add your notes here</p>
+<form action="/notebook/" method="post">
+    {% csrf_token %}
+    Notebook Name: <input type="text" name="notebook_name" placeholder="Notebook Name" required /><br />
+    Notebook Content: <textarea name="notebook_content" rows="2" placeholder="Type your notebook content here" required ></textarea><br />
+    <input type="submit" class="button primary" value="Add">
+    <input type="reset" class="button" value="Reset">
+</form>
+
+<h2>Your notebooks</h2>
+{% if not messages %}
+<ol>
+    <dl>
+        {% for notebook in notebook_list %}
+        <b><dt><li><a href="/notebook/edit/{{ notebook.id }}">{{ notebook.notebook_name }}</a></li></dt></b>
+        <dd>{{ notebook.notebook_content }}</dd><br />
+        <a href="/notebook/done/{{ notebook.id }}" class="button small">Delete</a><br /><br />
+        {% endfor %}
+    </dl>
+</ol>
+{% else %}
+{% for message in messages %}
+<font color="blue">{{ message }} <br /></font>
+{% endfor %}
+{% endif %}
+{% endblock %}

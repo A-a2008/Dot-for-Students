@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Thank you! You are registered for Dot</h1>
+<p>Now you can use this website anywhere in this world with a browser and see your data on the go</p>
+<br />
+<dl>
+    <dt>Your Details:</dt>
+    <b>
+        <dd>Name: {{ name }}</dd>
+        <dd>Username: {{ username }}</dd>
+        <dd>Email: {{ email }}</dd>
+    </b>
+</dl>
+{% endblock %}

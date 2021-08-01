@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>To-do List</h1>
+<p>Add your daily to-do's and don't worry deleting them everyday</p>
+<form action="/todo/edit/{{ todo.id }}/" method="post">
+    {% csrf_token %}
+    To-do: <input type="text" name="todo" value="{{ todo.todo }}" required /><br />
+    <input type="submit" class="button primary" value="Add">
+    <input type="reset" class="button" value="Reset">
+</form>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>To-do List</h1>
+<p>Add your to-do's</p>
+<form action="/todo-list/" method="post">
+    {% csrf_token %}
+    To-do: <input type="text" name="todo" placeholder="To-do" required /><br />
+    <input type="submit" class="button primary" value="Add">
+    <input type="reset" class="button" value="Reset">
+</form>
+
+<h2>Your to-do</h2>
+<table>
+    <thead>
+        <tr>
+            {% if not messages %}
+            <th>To-do</th>
+            <th>Done?</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% if not messages %}
+        {% for todo in todo_list %}
+        <tr>
+            <td><a href="/todo/edit/{{ todo.id }}">{{ todo.todo }}</a></td>
+            <td><a href="/todo/done/{{ todo.id }}" class="button small">Done</a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        {% for message in messages %}
+        <font color="blue">{{ message }} <br /></font>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}
